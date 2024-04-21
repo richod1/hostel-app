@@ -69,9 +69,19 @@ const getListing=async(req,res,next)=>{
     }
 }
 
+const getListings=async(req,res,next)=>{
+    try{
+
+    }catch(err){
+        console.log('something went wrong at geting listing')
+        next(err)
+    }
+}
+
 module.exports={
     createListing,
     deleteListing,
     updateListing,
     getListing,
+    getListings,
 }
