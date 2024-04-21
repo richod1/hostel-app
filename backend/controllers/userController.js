@@ -39,3 +39,60 @@ const updateUser=async(req,res,next)=>{
         next(error)
     }
 }
+
+const deleteUser=async(req,res,next)=>{
+    if(req.user,id !== req.params.id)
+    return next(errorHandler(401,'You can only delete your account'))
+
+
+    try{
+        await User.findByIdAndDelete(req.bodparams.id)
+        res.clearCookie('access_token');
+        res.status(200).json('User has been deleted!')
+
+    }catch(err){
+        console.log('something went wront at delete user',err)
+        next(err)
+
+    }
+}
+
+const getUserListings=async(req,res,next)=>{
+    if(req.user.id===req.params.id){
+        try{
+            const listings=await Listing.find({userRef:req.params.id});
+            res.status(200).json(listings)
+
+        }catch(err){
+            consoloe.log('something went wrong at get user listings',err)
+            next(err)
+        }
+    }else{
+        return next(errorHandler(401,'You can view your own listings!'))
+    }
+}
+
+const getUser=async(req,res,next)=>{
+    try{
+        const user=await User.findOne(req.params.id);
+        if(!user){
+            return next(errorHandler(404,'Use5r not found'))
+
+            const {password:pass,...rest}=user._id;
+            res.status(200).json(rest);
+        }
+
+    }catch(err){
+        console.log('something went wrong at get user')
+        next(err)
+    }
+}
+
+module.exports={
+    getUser,
+    getUserListings,
+    deleteUser,
+    updateUser,
+    test,
+
+}
