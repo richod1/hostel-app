@@ -52,7 +52,50 @@ return next(errorHandler(401,'wrong credentials!'))
     }
 }
 
+const signInwithGoogle=async(req,res,next)=>{
+    const {email}=req.body.email;
+    try{
+        const user=await User.findOne({email})
+        if(user){
+            const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'2d'})
+            const {password:pass,...rest}=user._doc;
+
+            res.status(200).cookie('access_token',token,{httpOnly:true}).json(rest)
+        }else{
+            const generatedPassword=Math.random().toString(36).slice(-8) * Math.random().toString(36).slice(-8);
+            const hashedPassword=bcrypt.hashSync(generatedPassword,10);
+            const newUser=new User({
+                email,password:hashedPassword,
+                avatar:req.body.photo
+            })
+
+            await newUser.save();
+            const token=jwt.sign({id:newUser._id},process.env.JWT_SECRET,{expiresIn:'2d'})
+            const {password:pass,...rest}=newUser._doc;
+
+            res.cookie('access_token',token,{httpOnly:true}).status(201).json(rest)
+        }
+    }catch(err){
+        console.log('something went wrong at signInwithGoogle...',err)
+        next(err)
+
+    }
+}
+
+const signOut=async(req,res,next)=>{
+    try{
+        res.clearCokkie('access_token');
+        res.status(200).json('User has been loged out!')
+
+    }catch(err){
+        console.log('something went wront at signOut!',err)
+        next(err)
+
+    }
+}
+
 module.exports={
     signUp,
     signIn,
+    signInwithGoogle,
 }
