@@ -35,7 +35,7 @@ const updateUser=async(req,res,next)=>{
         res.status(200).json(rest);
 
     }catch(error){
-        console,log("something went wrong at updateUser...",error)
+        console.log("something went wrong at updateUser...",error)
         next(error)
     }
 }

@@ -56,10 +56,10 @@
             place with ease
             </h1>
             <div className='text-gray-400 text-xs sm:text-sm'>
-            TTU Hostels is the best place to find your next perfect place to
+            TTU Hostel is the best place to find your next perfect place to
             live.
             <br />
-            We have a wide range of Hostels for you to choose from.
+            We have a wide range of properties for you to choose from.
             </div>
             <Link
             to={'/search'}
@@ -74,7 +74,7 @@
             {offerListings &&
             offerListings.length > 0 &&
             offerListings.map((listing) => (
-                <SwiperSlide key={listing._id}>
+                <SwiperSlide>
                 <div
                     style={{
                     background: `url(${listing.imageUrls[0]}) center no-repeat`,
@@ -106,8 +106,8 @@
             {rentListings && rentListings.length > 0 && (
             <div className=''>
                 <div className='my-3'>
-                <h2 className='text-2xl font-semibold text-slate-600'>Recent places Hostels for Host</h2>
-                <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more Hostels for HosinHost</Link>
+                <h2 className='text-2xl font-semibold text-slate-600'>Recent Hostels for Hosting</h2>
+                <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for Hosting</Link>
                 </div>
                 <div className='flex flex-wrap gap-4'>
                 {rentListings.map((listing) => (
@@ -119,8 +119,8 @@
             {saleListings && saleListings.length > 0 && (
             <div className=''>
                 <div className='my-3'>
-                <h2 className='text-2xl font-semibold text-slate-600'>Recent Hostels for Hosting</h2>
-                <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more Hostels for Hosting</Link>
+                <h2 className='text-2xl font-semibold text-slate-600'>Recent places for Host</h2>
+                <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for Host</Link>
                 </div>
                 <div className='flex flex-wrap gap-4'>
                 {saleListings.map((listing) => (

@@ -197,7 +197,7 @@
                     onChange={handleChange}
                     checked={sidebardata.parking}
                 />
-                <span>Parking</span>
+                <span>Kitchen</span>
                 </div>
                 <div className='flex gap-2'>
                 <input

@@ -1,11 +1,11 @@
-const {signUp,signIn,signInwithGoogle,signOut} =require("../controllers/authController")
+const {signin,signup,google,signOut} =require("../controllers/authController")
 const express=require("express")
 const router=express.Router();
 
 
-router.post("/signup",signUp)
-router.post("/signin",signIn)
-router.post("/google",signInwithGoogle)
+router.post("/signup",signup)
+router.post("/signin",signin)
+router.post("/google",google)
 router.get("/signout",signOut)
 
 module.exports=router;

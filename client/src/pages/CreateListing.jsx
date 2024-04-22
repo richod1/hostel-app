@@ -19,7 +19,7 @@
         name: '',
         description: '',
         address: '',
-        type: 'rent',
+        type: 'Host',
         bedrooms: 1,
         bathrooms: 1,
         regularPrice: 50,
@@ -94,7 +94,7 @@
     };
 
     const handleChange = (e) => {
-        if (e.target.id === 'sale' || e.target.id === 'rent') {
+        if (e.target.id === 'Host' || e.target.id === 'Hosting') {
         setFormData({
             ...formData,
             type: e.target.id,
@@ -102,7 +102,7 @@
         }
 
         if (
-        e.target.id === 'parking' ||
+        e.target.id === 'Kitchen' ||
         e.target.id === 'furnished' ||
         e.target.id === 'offer'
         ) {
@@ -204,10 +204,10 @@
                 <div className='flex gap-2'>
                 <input
                     type='checkbox'
-                    id='rent'
+                    id='Host'
                     className='w-5'
                     onChange={handleChange}
-                    checked={formData.type === 'rent'}
+                    checked={formData.type === 'Host'}
                 />
                 <span>Hosting</span>
                 </div>
@@ -219,7 +219,7 @@
                     onChange={handleChange}
                     checked={formData.parking}
                 />
-                <span>Parking spot</span>
+                <span>Kitchen</span>
                 </div>
                 <div className='flex gap-2'>
                 <input

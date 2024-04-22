@@ -10,7 +10,7 @@ const app=express()
 const mongoose=require("mongoose")
 const authRouter=require("./route/auth.route")
 const userRouter=require("./route/user.route")
-const listRouter=require("./route/listing.route")
+const listingRouter=require("./route/listing.route")
 
 
 app.use(cors())
@@ -24,9 +24,9 @@ app.get('/api',(req,res)=>{
 })
 
 
-app.use('/api/user',userRouter)
-app.use("/api/auth",authRouter)
-app.use('/api/listing',listRouter)
+app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/listing', listingRouter);
 
 app.use(express.static(path.join(__dirname,'/client/dist')))
 
